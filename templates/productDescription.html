@@ -10,30 +10,10 @@
 	<a href="/">
 		<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
 	</a>
-	<form>
-		<input id="searchBox" type="text" name="searchQuery">
-		<input id="searchButton" type="submit" value="Search">
-	</form>
-
-	{% if not loggedIn %}
-	<div id="signInButton">
-		<a class="link" href="/loginForm">Sign In</a>
-	</div>
-	{% else %}
-	<div class="dropdown">
-		<button class="dropbtn">Hello, <br>{{firstName}}</button>
-		<div class="dropdown-content">
-			<a href="/account/orders">Your orders</a>
-			<a href="/account/profile">Your profile</a>
-			<hr>
-			<a href="/logout">Sign Out</a>
-		</div>
-	</div>
-	{% endif %}
-	<div id="kart">
-		<a class="link" href="/cart">
-			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-			CART {{noOfItems}}
+	<div id="cart">
+		<a class="link" href="/cart" style="color: white">
+			<img src={{url_for('static', filename='images/shoppingCart1.png')}} id="cartIcon" />
+			<span style="color: white;">VIEW CART: {{noOfItems}} </span>
 		</a>
 	</div>
 </div>
@@ -42,30 +22,28 @@
 		<h1>{{data[1]}}</h1>
 	</div>
 	<div>
-		<img src={{url_for('static', filename='uploads/'+data[4]) }} id="productImage"/>
+		<img src={{url_for('static', filename='uploads/'+data.image) }} id="productImage"/>
 	</div>
 
 	<div id="productDescription">
+        <a href="/addToCart?productId={{request.args.get('productId')}}">Add to Cart</a>
 		<h2>Details</h2>
 		<table id="descriptionTable">
 			<tr>
 				<td>Name</td>
-				<td>{{data[1]}}</td>
+				<td>{{data.name}}</td>
 			</tr>
 			<tr>
 				<td>Price</td>
-				<td>${{data[2]}}</td>
+				<td>${{data.price}}</td>
 			</tr>
 			<tr>
 				<td>Stock</td>
-				<td>{{data[5]}}</td>
+				<td>{{data.stock}}</td>
 			</tr>
 		</table>
 		<h2>Description</h2>
-		<p>{{data[3]}}</p>
-	</div>
-	<div id="addToCart">
-		<a href="/addToCart?productId={{request.args.get('productId')}}">Add to Cart</a>
+		<p>{{data.description}}</p>
 	</div>
 </div>
 </body>

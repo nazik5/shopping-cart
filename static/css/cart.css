@@ -49,11 +49,10 @@
 
 #seperator {
 	margin: 0px;
-	max-width: 400px;
 }
 
 #total {
-	padding-left: 280px;
+	padding-top: 20px;
 }
 
 #itemNameTag {

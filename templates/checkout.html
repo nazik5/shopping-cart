@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Your Cart</title>
+<link rel="stylesheet" href={{url_for('static', filename='css/cart.css')}} />
+<link rel="stylesheet" href={{url_for('static', filename='css/topStyle.css') }} />
+</head>
+<body>
+<div id="title">
+	<a href="/">
+		<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
+	</a>
+	<div id="cart">
+		<a class="link" href="/cart" style="color: white">
+			<img src={{url_for('static', filename='images/shoppingCart1.png')}} id="cartIcon" />
+			<span style="color: white;">VIEW CART: {{noOfItems}} </span>
+		</a>
+	</div>
+</div>
+<div id="cartItems">
+	<h2 style="margin-left: 20px">Order Summary</h2>
+	<div id="tableItems">
+		{% for product in products %}
+		<div>
+			<hr id="separator">
+			<div id="itemImage">
+				<img src={{url_for('static', filename='uploads/'+product.image)}} id="image"/>
+			</div>
+			<div id="itemName">
+				<span id="itemNameTag">{{product.name}}</span><br>
+			</div>
+			<div id="itemPrice">
+				${{product.price}}
+			</div>
+		</div>
+		{% endfor %}
+		<hr id="seperator">
+		<div id="total">
+			<span id="subtotal">Subtotal</span> : ${{totalPrice}}
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
+
